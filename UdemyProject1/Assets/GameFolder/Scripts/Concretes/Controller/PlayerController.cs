@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UdemyProject1.Inputs;
+using UdemyProject1.Movements;
 
 
 //namespaceler classlarý birbirinden ayýrýlar
@@ -10,16 +11,16 @@ namespace UdemyProject1.Controllers
 {
 	public class PlayerController : MonoBehaviour
 	{
-		[SerializeField] float _force;
-		Rigidbody _rigidbody;
+		
 		DefaultInput _input;
+		Mover _mover;
 
 		bool _isForceUp;
 
 		private void Awake()
 		{
-			_rigidbody = GetComponent<Rigidbody>();
 			_input = new DefaultInput();
+			_mover = new Mover(GetComponent<Rigidbody>());
 		}
 
 		private void Update()
@@ -44,7 +45,7 @@ namespace UdemyProject1.Controllers
 
 			if (_isForceUp)
 			{
-				_rigidbody.AddForce(Vector3.up *_force * Time.deltaTime);
+				_mover.FixedTick();
 			}
 		}
 	}
