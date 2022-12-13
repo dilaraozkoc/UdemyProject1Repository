@@ -10,11 +10,13 @@ namespace UdemyProject1.Inputs
         private DefaultAction _input;
 
         public bool isForceUp { get; private set; }
-        public DefaultInput()
+		public float LeftRight { get; private set; }
+		public DefaultInput()
 		{
             _input = new DefaultAction();
 
             _input.Rocket.ForceUp.performed += context => isForceUp = context.ReadValueAsButton();
+            _input.Rocket.LeftRight.performed += context => LeftRight = context.ReadValue<float>();
 
             _input.Enable();
 		}

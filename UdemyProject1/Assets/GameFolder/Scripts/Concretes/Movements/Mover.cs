@@ -1,21 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UdemyProject1.Controllers;
 
 namespace UdemyProject1.Movements
 {
 	public class Mover
 	{
 		Rigidbody _rigidbody;
+		PlayerController _playerController;
 
-		public Mover(Rigidbody rigidbody)
+		public Mover(PlayerController playerController)
 		{
-			_rigidbody = rigidbody;
+			_playerController = playerController;
+			_rigidbody = playerController.GetComponent<Rigidbody>();
 		}
 
 		public void FixedTick()
 		{
-			_rigidbody.AddRelativeForce(Vector3.up * Time.deltaTime * 55f);
+			_rigidbody.AddRelativeForce(Vector3.up * Time.deltaTime * _playerController.Force);
 		}
 	}
 }
