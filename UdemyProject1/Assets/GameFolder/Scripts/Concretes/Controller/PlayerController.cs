@@ -17,8 +17,9 @@ namespace UdemyProject1.Controllers
 		DefaultInput _input;
 		Mover _mover;
 		Rotator _rotator;
+		Fuel _fuel;
 
-		bool _isForceUp;
+		bool _canForceUp;
 		float _leftRight;
 
 		public float TurnSpeed => _turnSpeed;
@@ -28,6 +29,7 @@ namespace UdemyProject1.Controllers
 			_input = new DefaultInput();
 			_mover = new Mover(this);
 			_rotator = new Rotator(this);
+			_fuel = GetComponent<Fuel>();
 		}
 
 		private void Update()
@@ -35,13 +37,14 @@ namespace UdemyProject1.Controllers
 			Debug.Log(_input.LeftRight);
 			//Inputlar
 			//Her bir frame'de bir çalýþýr
-			if (_input.isForceUp)
+			if (_input.isForceUp && !_fuel.IsEmpty)
 			{
-				_isForceUp = true;
+				_canForceUp = true;
 			}
 			else
 			{
-				_isForceUp = false;
+				_canForceUp = false;
+				_fuel.IncreaseFuel(0.01f);
 			}
 			_leftRight = _input.LeftRight;
 		}
@@ -51,9 +54,10 @@ namespace UdemyProject1.Controllers
 			//Physic operations
 			//hiç bir iþlem olmazsa 0.02sn de çalýþýr. Fizik motoruyla sekronize çalýþýr
 
-			if (_isForceUp)
+			if (_canForceUp)
 			{
 				_mover.FixedTick();
+				_fuel.DecreaseFuel(0.2f);
 			}
 			_rotator.FixedTick(_leftRight);
 		}
