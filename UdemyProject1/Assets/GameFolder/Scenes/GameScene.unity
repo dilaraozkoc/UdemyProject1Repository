@@ -1251,18 +1251,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 730743866}
     m_Modifications:
-    - target: {fileID: 2431409030490551556, guid: 5e4eb16ca3f6cad4d950c7d52c5eb9d9, type: 3}
-      propertyPath: m_Range
-      value: 2.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2431409030490551556, guid: 5e4eb16ca3f6cad4d950c7d52c5eb9d9, type: 3}
-      propertyPath: m_Intensity
-      value: 3.66
-      objectReference: {fileID: 0}
-    - target: {fileID: 2431409030490551556, guid: 5e4eb16ca3f6cad4d950c7d52c5eb9d9, type: 3}
-      propertyPath: m_Lightmapping
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2431409031807636408, guid: 5e4eb16ca3f6cad4d950c7d52c5eb9d9, type: 3}
       propertyPath: m_RootOrder
       value: 0
